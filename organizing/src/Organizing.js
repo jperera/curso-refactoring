@@ -11,7 +11,7 @@ function Probe() {
 	this.doComplicatedThings = function() {};
 	this.moreMagic = function() {};
 	this.needsMaintenance = function() {
-		return !this.getFixed();
+		return !this.isFixed();
 	};
 	this.setFixed = function(fixedState) {
 		this.fixed = fixedState;
@@ -22,8 +22,7 @@ function Probe() {
 	this.fix = function() {
 		this.setFixed(true);
 	};
-	this.
-	break = function() {
+	this.break = function() {
 		this.setFixed(false);
 	};
 };
@@ -44,11 +43,11 @@ function Letter(letter) {
 };
 
 Letter.obtain = function(letter) {
-	theLetter = this.pool[letter];
+	/*theLetter = this.pool[letter];
 	if(!theLetter) {
 		aLetter = new Letter(letter);
 		this.pool[letter]=aLetter;
-	}
+	}*/
 	return new Letter(letter);
 };
 
