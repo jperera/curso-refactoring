@@ -43,5 +43,15 @@ function Complexion(aComplexion) {
 }
 
 Complexion.create = function(aComplexion) {
+	if (aComplexion === HumanMetabolism.skinny) return new Skinny();
 	return new Complexion(aComplexion);
 };
+
+function Skinny() {
+	this.getType = function() {
+		return HumanMetabolism.skinny;
+	};
+}
+Skinny.prototype = new Complexion();
+
+
