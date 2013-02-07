@@ -1,32 +1,13 @@
 function HumanMetabolism() {
 
 	this.complexion = '';
-	this.skinny = 1;
-	this.fatty = 0;
-	this.athletic = 2;
-	this.morbid = 3;
 
 	this.getDailyCalories = function() {
-		var calories = 0;
-		switch(this.complexion.getType()) {
-		case 0:
-			calories = 1000;
-			break;
-		case 1:
-			calories = 3000;
-			break;
-		case 2:
-			calories = 2000;
-			break;
-		case 3:
-			calories = 500;
-			break;
-		}
-		return calories;
+		return this.complexion.getDailyCalories();
 	};
 
-	this.setComplexion = function(aComplexion) {
-		this.complexion = Complexion.create(aComplexion);
+	this.setComplexion = function(complexionType) {
+		this.complexion = Complexion.create(complexionType);
 	};
 
 	this.moreMagic = function() {};
@@ -34,24 +15,44 @@ function HumanMetabolism() {
 
 }
 
-function Complexion(aComplexion) {
-	this.type = aComplexion;
-
-	this.getType = function() {
-		return this.type;
-	};
+function Complexion() {
+	
 }
 
-Complexion.create = function(aComplexion) {
-	if (aComplexion === HumanMetabolism.skinny) return new Skinny();
-	return new Complexion(aComplexion);
+var complexionTypes = {0: new Fatty(), 1: new Skinny(), 2: new Athletic(), 3: new Morbid()};
+
+Complexion.create = function(complexionType) {
+	var complexion = complexionTypes[complexionType];
+	if (!complexion) return new NoComplexion();
+	return complexion;
 };
 
-function Skinny() {
-	this.getType = function() {
-		return HumanMetabolism.skinny;
+function NoComplexion() {
+	this.getDailyCalories = function() {
+		return 0;
 	};
 }
-Skinny.prototype = new Complexion();
 
+function Fatty() {
+	this.getDailyCalories = function() {
+		return 1000;
+	};
+}
 
+function Skinny() {
+	this.getDailyCalories = function() {
+		return 3000;
+	};
+}
+
+function Athletic() {
+	this.getDailyCalories = function() {
+		return 2000;
+	};
+}
+
+function Morbid() {
+	this.getDailyCalories = function() {
+		return 500;
+	};
+}

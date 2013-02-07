@@ -6,12 +6,15 @@ describe("HumanMetabolism", function() {
     metabolism = new HumanMetabolism();
   });
 
-  it("needs calories based in complexion", function() {   
-    metabolism.setComplexion(1);    
+  it("needs calories based in complexion", function() {
+    metabolism.setComplexion(1);
     expect(metabolism.getDailyCalories()).toEqual(3000);
     
-    metabolism.setComplexion(3);    
+    metabolism.setComplexion(3);
     expect(metabolism.getDailyCalories()).toEqual(500);
+
+    metabolism.setComplexion(4);
+    expect(metabolism.getDailyCalories()).toEqual(0);
     
   });
 
