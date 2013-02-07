@@ -19,10 +19,10 @@ function Complexion() {
 	
 }
 
-var complexionTypes = {0: new Fatty(), 1: new Skinny(), 2: new Athletic(), 3: new Morbid()};
+Complexion.complexionTypes = {0: new Fatty(), 1: new Skinny(), 2: new Athletic(), 3: new Morbid()};
 
 Complexion.create = function(complexionType) {
-	var complexion = complexionTypes[complexionType];
+	var complexion = Complexion.complexionTypes[complexionType];
 	if (!complexion) return new NoComplexion();
 	return complexion;
 };
