@@ -1,6 +1,6 @@
 function HumanMetabolism() {
 
-	this.complexion;
+	this.complexion = '';
 	this.skinny = 1;
 	this.fatty = 0;
 	this.athletic = 2;
@@ -8,7 +8,7 @@ function HumanMetabolism() {
 
 	this.getDailyCalories = function() {
 		var calories = 0;
-		switch(this.complexion) {
+		switch(this.complexion.getType()) {
 		case 0:
 			calories = 1000;
 			break;
@@ -26,9 +26,22 @@ function HumanMetabolism() {
 	};
 
 	this.setComplexion = function(aComplexion) {
-		this.complexion = aComplexion;
+		this.complexion = Complexion.create(aComplexion);
 	};
+
 	this.moreMagic = function() {};
 	this.needsMoreFood = function() {};
 
+}
+
+function Complexion(aComplexion) {
+	this.type = aComplexion;
+
+	this.getType = function() {
+		return this.type;
+	};
+}
+
+Complexion.create = function(aComplexion) {
+	return new Complexion(aComplexion);
 };
