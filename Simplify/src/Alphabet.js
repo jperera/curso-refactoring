@@ -28,8 +28,8 @@ Letter.newNull = function() {
 };
 
 Letter.obtain = function(aLetter) {
-	function isSingleLetter() {
-		return (aLetter.length === 1);
+	function isSingleLetter(aSentece) {
+		return (aSentece.length === 1);
 	}
 
 	if (!isSingleLetter(aLetter)) return Letter.newNull();
