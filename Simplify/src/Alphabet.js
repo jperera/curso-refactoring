@@ -1,5 +1,4 @@
 
-
 function Letter(letter) {
 	this.letter = letter;
 
@@ -10,15 +9,34 @@ function Letter(letter) {
 	this.toLower = function() {
 		return this.letter.toLowerCase();
 	};
-
 }
+
+
+function NullLetter() {
+	this.toCaps = function() {
+		return '';
+	};
+
+	this.toLower = function() {
+		return '';
+	};
+}
+
+
+Letter.newNull = function() {
+	return new NullLetter();
+};
 
 
 function Alphabet() {
 
-	this.giveMeAn = function(letter) {
-		if (letter.length!==1) return null; 
-		return new Letter(letter);
+	this.giveMeAn = function(aLetter) {
+		if (!this.isSingleLetter(aLetter)) return Letter.newNull();
+		return new Letter(aLetter);
+	};
+
+	this.isSingleLetter = function(aLetter) {
+		return (aLetter.length === 1);
 	};
 
 	this.length = function() {
@@ -29,6 +47,7 @@ function Alphabet() {
 	this.getConsonants = function() {};
 }
 
+
 function QuixoteWriter() {
 
 	this.alphabet = new Alphabet();
@@ -36,9 +55,12 @@ function QuixoteWriter() {
 
 	this.typeUpperCased = function(userInput) {
 		this.lastLetter = this.alphabet.giveMeAn(userInput);
-		if (this.lastLetter !== null) {
-			this.display += this.lastLetter.toCaps();
-		}
+		this.display += this.lastLetter.toCaps();
+	};
+
+	this.typeLowerCased = function(userInput) {
+		this.lastLetter = this.alphabet.giveMeAn(userInput);
+		this.display += this.lastLetter.toLower();
 	};
 
 	this.getDisplayContent = function() {
