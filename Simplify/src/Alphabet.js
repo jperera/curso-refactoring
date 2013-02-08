@@ -27,16 +27,20 @@ Letter.newNull = function() {
 	return new NullLetter();
 };
 
+Letter.obtain = function(aLetter) {
+	function isSingleLetter() {
+		return (aLetter.length === 1);
+	}
+
+	if (!isSingleLetter(aLetter)) return Letter.newNull();
+	return new Letter(aLetter);
+};
+
 
 function Alphabet() {
 
 	this.giveMeAn = function(aLetter) {
-		if (!this.isSingleLetter(aLetter)) return Letter.newNull();
-		return new Letter(aLetter);
-	};
-
-	this.isSingleLetter = function(aLetter) {
-		return (aLetter.length === 1);
+		return Letter.obtain(aLetter);
 	};
 
 	this.length = function() {
