@@ -11,7 +11,7 @@ function BirthDay() {
 		if(name && (name[0] == 'X' && name[3] == 'i' && (name[2] != 'b'))) {
 			signal = (name[1] == 'a');
 			if (!(name[0] == 'x')){
-				this.prepareParty()
+				this.prepareParty();
 			}
 		}
 		if(!signal) {
@@ -22,13 +22,13 @@ function BirthDay() {
 	};
 
 	this.prepareParty = function() {};
-};
+}
 
 
 function removeCharacter(chain, character) {
 	var i = 0;
 	var enc = false;
-	var result = '';;
+	var result = '';
 
 	while(!enc){
 		if (chain[i] != character){
@@ -46,32 +46,3 @@ function removeCharacter(chain, character) {
 
 
 
-
-
-function Letter(letter) {
-	this.letter = letter;
-
-	this.toCaps = function() {
-		return this.letter.toUpperCase();
-	};
-
-	this.toLower = function() {
-		return this.letter.toLowerCase();
-	};
-
-};
-
-
-function Alphabet() {
-
-	this.giveMeAn = function(letter) {
-		return new Letter(letter);
-	};
-
-	this.length = function() {
-		return 24;
-	};
-
-	this.getVocals = function() {};
-	this.getConsonants = function() {};
-};
